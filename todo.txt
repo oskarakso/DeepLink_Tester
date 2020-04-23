@@ -1,0 +1,11 @@
+-add error messages 
+-make .h that initializes every needed class 
+-add "clean after click" checkbox for Deeplink
+-save ADB Location after closing app
+-default ADB Location to app location
+-add home button simulation option after clicking on open deeplink
+-add small console at the bottom
+-prevent cmd from opening
+-make packet name selectable:
+	- Add / remove presets
+-add cleaning buttons for deeplink and Packet Name

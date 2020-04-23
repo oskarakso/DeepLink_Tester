@@ -1,6 +1,7 @@
 #pragma once
-#include "properties.h"
-properties user;
+#include "includes.h"
+
+
 
 namespace DeepLinkTeser {
 
@@ -14,6 +15,9 @@ namespace DeepLinkTeser {
 	/// <summary>
 	/// Podsumowanie informacji o Main
 	/// </summary>
+	/*to do: make .h that initializes every needed class */
+	clicked textbox2; 
+	properties user;
 	public ref class Main : public System::Windows::Forms::Form
 	{
 	public:
@@ -42,11 +46,13 @@ namespace DeepLinkTeser {
 	private: System::Windows::Forms::TextBox^ textBox1;
 	private: System::Windows::Forms::Button^ button1;
 	private: System::Windows::Forms::OpenFileDialog^ openFileDialog1;
-	private: System::Windows::Forms::MaskedTextBox^ maskedTextBox1;
-	private: System::Windows::Forms::MaskedTextBox^ maskedTextBox2;
+
+
 	private: System::Windows::Forms::Label^ label2;
 	private: System::Windows::Forms::Label^ label3;
 	private: System::Windows::Forms::Button^ button2;
+	private: System::Windows::Forms::TextBox^ textBox2;
+	private: System::Windows::Forms::TextBox^ textBox3;
 
 	protected:
 
@@ -69,11 +75,11 @@ namespace DeepLinkTeser {
 			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->openFileDialog1 = (gcnew System::Windows::Forms::OpenFileDialog());
-			this->maskedTextBox1 = (gcnew System::Windows::Forms::MaskedTextBox());
-			this->maskedTextBox2 = (gcnew System::Windows::Forms::MaskedTextBox());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->button2 = (gcnew System::Windows::Forms::Button());
+			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
+			this->textBox3 = (gcnew System::Windows::Forms::TextBox());
 			this->SuspendLayout();
 			// 
 			// label1
@@ -111,28 +117,12 @@ namespace DeepLinkTeser {
 			this->openFileDialog1->FileName = L"openFileDialog1";
 			this->openFileDialog1->FileOk += gcnew System::ComponentModel::CancelEventHandler(this, &Main::openFileDialog1_FileOk_1);
 			// 
-			// maskedTextBox1
-			// 
-			this->maskedTextBox1->Location = System::Drawing::Point(26, 73);
-			this->maskedTextBox1->Name = L"maskedTextBox1";
-			this->maskedTextBox1->Size = System::Drawing::Size(375, 20);
-			this->maskedTextBox1->TabIndex = 3;
-			this->maskedTextBox1->MaskInputRejected += gcnew System::Windows::Forms::MaskInputRejectedEventHandler(this, &Main::maskedTextBox1_MaskInputRejected);
-			// 
-			// maskedTextBox2
-			// 
-			this->maskedTextBox2->Location = System::Drawing::Point(26, 136);
-			this->maskedTextBox2->Name = L"maskedTextBox2";
-			this->maskedTextBox2->Size = System::Drawing::Size(375, 20);
-			this->maskedTextBox2->TabIndex = 4;
-			this->maskedTextBox2->MaskInputRejected += gcnew System::Windows::Forms::MaskInputRejectedEventHandler(this, &Main::maskedTextBox2_MaskInputRejected);
-			// 
 			// label2
 			// 
 			this->label2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14));
-			this->label2->Location = System::Drawing::Point(22, 42);
+			this->label2->Location = System::Drawing::Point(26, 42);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(145, 23);
+			this->label2->Size = System::Drawing::Size(287, 23);
 			this->label2->TabIndex = 5;
 			this->label2->Text = L"Packet Name";
 			this->label2->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
@@ -141,33 +131,52 @@ namespace DeepLinkTeser {
 			// label3
 			// 
 			this->label3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14));
-			this->label3->Location = System::Drawing::Point(22, 110);
+			this->label3->Location = System::Drawing::Point(26, 110);
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(145, 23);
+			this->label3->Size = System::Drawing::Size(287, 23);
 			this->label3->TabIndex = 6;
 			this->label3->Text = L"Deeplink";
 			this->label3->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
 			// 
 			// button2
 			// 
-			this->button2->Location = System::Drawing::Point(91, 196);
+			this->button2->Location = System::Drawing::Point(204, 182);
 			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(222, 23);
+			this->button2->Size = System::Drawing::Size(109, 34);
 			this->button2->TabIndex = 7;
 			this->button2->Text = L"button2";
 			this->button2->UseVisualStyleBackColor = true;
 			this->button2->Click += gcnew System::EventHandler(this, &Main::button2_Click);
+			// 
+			// textBox2
+			// 
+			this->textBox2->Location = System::Drawing::Point(26, 75);
+			this->textBox2->Name = L"textBox2";
+			this->textBox2->Size = System::Drawing::Size(287, 20);
+			this->textBox2->TabIndex = 8;
+			this->textBox2->Text = L"Leave blank to use standard \"click\"\r\n";
+			this->textBox2->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
+			this->textBox2->Click += gcnew System::EventHandler(this, &Main::textBox2_click);
+			this->textBox2->TextChanged += gcnew System::EventHandler(this, &Main::textBox2_TextChanged);
+			// 
+			// textBox3
+			// 
+			this->textBox3->Location = System::Drawing::Point(26, 136);
+			this->textBox3->Name = L"textBox3";
+			this->textBox3->Size = System::Drawing::Size(287, 20);
+			this->textBox3->TabIndex = 9;
+			this->textBox3->TextChanged += gcnew System::EventHandler(this, &Main::textBox3_TextChanged);
 			// 
 			// Main
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(893, 527);
+			this->Controls->Add(this->textBox3);
+			this->Controls->Add(this->textBox2);
 			this->Controls->Add(this->button2);
 			this->Controls->Add(this->label3);
 			this->Controls->Add(this->label2);
-			this->Controls->Add(this->maskedTextBox2);
-			this->Controls->Add(this->maskedTextBox1);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->textBox1);
 			this->Controls->Add(this->label1);
@@ -199,9 +208,9 @@ namespace DeepLinkTeser {
 		{
 			MessageBox::Show(openFileDialog1->FileName, "ADB Location:");
 		}
-		System::String^ managed = openFileDialog1->FileName;
-		std::string unmanaged = msclr::interop::marshal_as<std::string>(managed); //convert
-		user.adb_location = unmanaged; //set it to file location
+		//System::String^ managed = openFileDialog1->FileName;
+		//std::string unmanaged = msclr::interop::marshal_as<std::string>(managed); //convert
+		//user.adb_location = unmanaged; //set it to file location
 		textBox1->Text = openFileDialog1->FileName; //show file location in textbox
 	}
 	private: System::Void openFileDialog1_FileOk_1(System::Object^ sender, System::ComponentModel::CancelEventArgs^ e) {
@@ -210,31 +219,35 @@ namespace DeepLinkTeser {
 	}
 	private: System::Void label2_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
-	private: System::Void maskedTextBox1_MaskInputRejected(System::Object^ sender, System::Windows::Forms::MaskInputRejectedEventArgs^ e) {
-
-	}
-	private: System::Void maskedTextBox2_MaskInputRejected(System::Object^ sender, System::Windows::Forms::MaskInputRejectedEventArgs^ e) {
-
-	}
 	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
 		user.adb_location = msclr::interop::marshal_as<std::string>(textBox1->Text); //set it to file location from textbox1
-		string cmd; //string to be open in cmd
-		string cd = "cd ";
-		string test = " && adb shell am start -a android.intent.action.VIEW -d https://www.cnet.com/news/apple-cook-memo-condemns-trump-paris-climate-accord/";
-		cmd.append(cd);
-		cmd.append(user.adb_location);
-		cmd.append(test);
-
-		char* cmd_char = &cmd[0]; //convert ready string to char*
-
-		system(cmd_char); //run cmd_char
-		cout << "test";
-		//system("cd C:\\Users\\Oskar\\Desktop\\utest\\tools\\platform-tools"); //go to adb folder
-		//system("adb shell am start -a android.intent.action.VIEW -d https://wykop.pl/");
-		//dorobic:
-		// - usuwanie koncowki stringa z adresem do znaku '\' w³¹cznie
-		// - odpalanie pojedynczego deeplinku
+		if (user.adb_location.length() <= 1) {
+			//add error message
+		}
+		else {
+		user.packet_name = msclr::interop::marshal_as<std::string>(textBox2->Text); //get packet_name data from textBox2
+		string deeplink = msclr::interop::marshal_as<std::string>(textBox3->Text); //set deeplink from textBox3
+		if (deeplink.length() <= 1) {
+			//add error message
+		}
+		else {
+			system((connector(user.adb_location, user.packet_name, deeplink)));
+			}
+		}
 	}
+
+	private: System::Void textBox2_TextChanged(System::Object^ sender, System::EventArgs^ e) { //packet name
+		
+	}
+private: System::Void textBox2_click(System::Object^ sender, System::EventArgs^ e) { //packet name
+	while (textbox2.status < 2) {
+		textBox2->Text = "";
+			textbox2.status++;
+	}
+}
+private: System::Void textBox3_TextChanged(System::Object^ sender, System::EventArgs^ e) { //deeplink
+}
 
 };
 }
+	
