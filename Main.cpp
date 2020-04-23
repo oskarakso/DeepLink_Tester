@@ -13,4 +13,5 @@ int main() {
 	Application::SetCompatibleTextRenderingDefault(false);
 	DeepLinkTeser::Main form;
 	Application::Run(%form);
-}
+}  
+//...
