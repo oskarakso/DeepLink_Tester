@@ -1,19 +1,20 @@
 #pragma once
 #include <msclr\marshal_cppstd.h>
 #include <string>
+#include <iostream>
 
 using namespace std;
-string adb_location;
+//string adb_location;
 
 
 class properties {
 public:
 	string adb_location;
-	string openFileDialog1_default = "c://";
-	auto getdatapath(properties&);// (openFileDialog1_default);
+	string openFileDialog1_default = "c:\\";
+	System::String^ getdatapath(properties&u); // (openFileDialog1_default);
 };
 
-auto getdatapath(properties&u)
+System::String^ properties::getdatapath(properties& u)
 {	
 	System::String^ systemString = msclr::interop::marshal_as<System::String^>(u.openFileDialog1_default);
 	return systemString;
