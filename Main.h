@@ -231,7 +231,7 @@ namespace DeepLinkTeser {
 			//add error message
 		}
 		else {
-			system((connector(user.adb_location, user.packet_name, deeplink)));
+			system((connector(user.adb_location, user.packet_name, deeplink)).c_str());
 			}
 		}
 	}

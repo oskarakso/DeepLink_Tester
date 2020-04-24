@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29609.76
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DeepLink_Tester", "DeepLink_Teser.vcxproj", "{F605CCA3-79F0-4744-AE7D-FD27CC4CAA25}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DeepLink_Tester", "DeepLink_Tester.vcxproj", "{F605CCA3-79F0-4744-AE7D-FD27CC4CAA25}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

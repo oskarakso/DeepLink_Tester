@@ -6,5 +6,5 @@
 
 
 char* dupa();
-const char* connector(std::string a, std::string b, std::string c);
+std::string connector(std::string a, std::string b, std::string c);
 std::string cleaner(std::string path);
