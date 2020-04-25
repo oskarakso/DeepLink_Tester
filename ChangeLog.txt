@@ -1,2 +1,3 @@
 24.04.2020 | V 0.1 - First working version
-V 0.1.1 - Memory o
+24.04.2020 | V 0.1.1 - Memory optimization
+25.04.2020 | V 0.2 - Added error messages and content checking for textbox fields, now using class to get error message, textbox text, added "initializer" that initialize classes at the begging of program

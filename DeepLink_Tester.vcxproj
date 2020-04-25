@@ -121,9 +121,11 @@
   <ItemGroup>
     <ClCompile Include="functions.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="properties.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="includes.h" />
+    <ClInclude Include="initializer.h" />
     <ClInclude Include="Main.h">
       <FileType>CppForm</FileType>
     </ClInclude>

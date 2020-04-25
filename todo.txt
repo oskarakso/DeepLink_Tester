@@ -1,11 +1,18 @@
--add error messages 
--make .h that initializes every needed class 
+TO DO:
 -add "clean after click" checkbox for Deeplink
+-add home button simulation checkbox after clicking on open deeplink
 -save ADB Location after closing app
--default ADB Location to app location
--add home button simulation option after clicking on open deeplink
+-set default ADB Location to app location
 -add small console at the bottom
--prevent cmd from opening
+-add cleaning buttons for deeplink and Packet Name
 -make packet name selectable:
 	- Add / remove presets
--add cleaning buttons for deeplink and Packet Name
+-prevent cmd from opening
+-add importing option for deeplinks
+-add "result" question popup 
+-add logs (date, packet_name, used deeplink, result)
+
+
+DONE:
++add error messages 
++make .h that initializes every needed class 

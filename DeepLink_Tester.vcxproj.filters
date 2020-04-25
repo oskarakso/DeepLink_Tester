@@ -21,6 +21,9 @@
     <ClCompile Include="functions.cpp">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
+    <ClCompile Include="properties.cpp">
+      <Filter>Pliki źródłowe</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Main.h">
@@ -31,6 +34,9 @@
     </ClInclude>
     <ClInclude Include="includes.h">
       <Filter>Pliki źródłowe</Filter>
+    </ClInclude>
+    <ClInclude Include="initializer.h">
+      <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

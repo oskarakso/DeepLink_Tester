@@ -1,6 +1,6 @@
 #pragma once
 #include "includes.h"
-
+#include "initializer.h"
 
 
 namespace DeepLinkTeser {
@@ -16,15 +16,15 @@ namespace DeepLinkTeser {
 	/// Podsumowanie informacji o Main
 	/// </summary>
 	/*to do: make .h that initializes every needed class */
-	clicked textbox2; 
-	properties user;
+
 	public ref class Main : public System::Windows::Forms::Form
 	{
 	public:
 		Main(void)
 		{
 			InitializeComponent();
-
+			textBox2->Text = text.get(text.packet);
+			textBox3->Text = text.get(text.deeplink);
 			//
 			//TODO: W tym miejscu dodaj kod konstruktora
 			//
@@ -85,7 +85,7 @@ namespace DeepLinkTeser {
 			// label1
 			// 
 			this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14));
-			this->label1->Location = System::Drawing::Point(722, 20);
+			this->label1->Location = System::Drawing::Point(722, 42);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(145, 23);
 			this->label1->TabIndex = 0;
@@ -95,7 +95,7 @@ namespace DeepLinkTeser {
 			// 
 			// textBox1
 			// 
-			this->textBox1->Location = System::Drawing::Point(726, 46);
+			this->textBox1->Location = System::Drawing::Point(726, 75);
 			this->textBox1->Name = L"textBox1";
 			this->textBox1->Size = System::Drawing::Size(141, 20);
 			this->textBox1->TabIndex = 1;
@@ -104,7 +104,7 @@ namespace DeepLinkTeser {
 			// button1
 			// 
 			this->button1->DialogResult = System::Windows::Forms::DialogResult::OK;
-			this->button1->Location = System::Drawing::Point(726, 73);
+			this->button1->Location = System::Drawing::Point(726, 101);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(141, 23);
 			this->button1->TabIndex = 2;
@@ -140,11 +140,13 @@ namespace DeepLinkTeser {
 			// 
 			// button2
 			// 
-			this->button2->Location = System::Drawing::Point(204, 182);
+			this->button2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(238)));
+			this->button2->Location = System::Drawing::Point(223, 180);
 			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(109, 34);
+			this->button2->Size = System::Drawing::Size(90, 34);
 			this->button2->TabIndex = 7;
-			this->button2->Text = L"button2";
+			this->button2->Text = L"Run";
 			this->button2->UseVisualStyleBackColor = true;
 			this->button2->Click += gcnew System::EventHandler(this, &Main::button2_Click);
 			// 
@@ -154,7 +156,6 @@ namespace DeepLinkTeser {
 			this->textBox2->Name = L"textBox2";
 			this->textBox2->Size = System::Drawing::Size(287, 20);
 			this->textBox2->TabIndex = 8;
-			this->textBox2->Text = L"Leave blank to use standard \"click\"\r\n";
 			this->textBox2->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
 			this->textBox2->Click += gcnew System::EventHandler(this, &Main::textBox2_click);
 			this->textBox2->TextChanged += gcnew System::EventHandler(this, &Main::textBox2_TextChanged);
@@ -165,6 +166,8 @@ namespace DeepLinkTeser {
 			this->textBox3->Name = L"textBox3";
 			this->textBox3->Size = System::Drawing::Size(287, 20);
 			this->textBox3->TabIndex = 9;
+			this->textBox3->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
+			this->textBox3->Click += gcnew System::EventHandler(this, &Main::textBox3_click);
 			this->textBox3->TextChanged += gcnew System::EventHandler(this, &Main::textBox3_TextChanged);
 			// 
 			// Main
@@ -199,7 +202,7 @@ namespace DeepLinkTeser {
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 	
 		OpenFileDialog^ openFileDialog1 = gcnew OpenFileDialog;
-		openFileDialog1->InitialDirectory = user.getdatapath(user); 
+		openFileDialog1->InitialDirectory = user.getdatapath(); 
 		openFileDialog1->AutoUpgradeEnabled = true;
 		openFileDialog1->Filter = "exe files (*.exe)|*.exe|All files (*.*)|*.*";
 		openFileDialog1->FilterIndex = 1;
@@ -208,9 +211,6 @@ namespace DeepLinkTeser {
 		{
 			MessageBox::Show(openFileDialog1->FileName, "ADB Location:");
 		}
-		//System::String^ managed = openFileDialog1->FileName;
-		//std::string unmanaged = msclr::interop::marshal_as<std::string>(managed); //convert
-		//user.adb_location = unmanaged; //set it to file location
 		textBox1->Text = openFileDialog1->FileName; //show file location in textbox
 	}
 	private: System::Void openFileDialog1_FileOk_1(System::Object^ sender, System::ComponentModel::CancelEventArgs^ e) {
@@ -221,23 +221,33 @@ namespace DeepLinkTeser {
 	}
 	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
 		user.adb_location = msclr::interop::marshal_as<std::string>(textBox1->Text); //set it to file location from textbox1
-		if (user.adb_location.length() <= 1) {
-			//add error message
+		if (user.adb_location.length() <= 3) {
+			MessageBox::Show(error.get(error.adb));
 		}
 		else {
 		user.packet_name = msclr::interop::marshal_as<std::string>(textBox2->Text); //get packet_name data from textBox2
-		string deeplink = msclr::interop::marshal_as<std::string>(textBox3->Text); //set deeplink from textBox3
-		if (deeplink.length() <= 1) {
-			//add error message
+		if (user.packet_name.length() != 0 && user.packet_name.length() <= 5) {
+			MessageBox::Show(error.get(error.packet));
 		}
 		else {
-			system((connector(user.adb_location, user.packet_name, deeplink)).c_str());
+			string deeplink = msclr::interop::marshal_as<std::string>(textBox3->Text); //set deeplink from textBox3
+			if (deeplink.length() <= 1) {
+				MessageBox::Show(error.get(error.deeplink));
+			}
+			else if (deeplink == text.deeplink) {
+				MessageBox::Show(error.get(error.deeplink));
+			}
+			else {
+				system((connector(user.adb_location, user.packet_name, deeplink)).c_str());
+				}
 			}
 		}
+
 	}
 
-	private: System::Void textBox2_TextChanged(System::Object^ sender, System::EventArgs^ e) { //packet name
-		
+	private: System::Void textBox2_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+	}
+	private: System::Void textBox3_TextChanged(System::Object^ sender, System::EventArgs^ e) {	
 	}
 private: System::Void textBox2_click(System::Object^ sender, System::EventArgs^ e) { //packet name
 	while (textbox2.status < 2) {
@@ -245,9 +255,12 @@ private: System::Void textBox2_click(System::Object^ sender, System::EventArgs^ 
 			textbox2.status++;
 	}
 }
-private: System::Void textBox3_TextChanged(System::Object^ sender, System::EventArgs^ e) { //deeplink
+private: System::Void textBox3_click(System::Object^ sender, System::EventArgs^ e) { //deeplink
+	while (textbox3.status < 2) {
+		textBox3->Text = "";
+		textbox3.status++;
+	}
 }
-
 };
 }
 	

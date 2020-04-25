@@ -29,10 +29,8 @@ string connector(string a, string b, string c) {
 	if (b == "") {
 		b = "android.intent.action.VIEW";
 	}
-	else if (b == "Leave blank to use standard \"click\"\r\n")
-		b = "android.intent.action.VIEW";
 	else 
-		b = b;
+	b = b;
 
 	cmd.append(cd);
 	cmd.append(a);

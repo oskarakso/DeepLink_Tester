@@ -3,6 +3,7 @@
 #include <string>
 #include <iostream>
 #include "properties.h"
+//#include "properties.cpp"
 
 
 char* dupa();
