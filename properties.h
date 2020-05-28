@@ -13,27 +13,31 @@ public:
 
 class message {
 public:
-	System::String^ get(string id);
+	System::String^ get(string id); //convert string (id) to system string and return it
 	string adb = "";
-	string packet = "Leave blank to use standard \"click";
+	string packet = "Leave blank to use standard \"click\"";
 	string deeplink = "Paste your deeplink here!";
-
+	string tooltip_clean = "Click to clean form";
+	string log_location = "Leave blank for default (adb folder)";
+	string log_name = "Leave blank for default (date_time)";
 };
 
 class error_text {
 public:
-	System::String^ get(string id);
+	System::String^ get(string id); //convert string (id) to system string and return it
 	string adb = "Missing ADB location";
-	string deeplink = "Missing deeplink";
 	string packet = "Wrong packet name";
+	string deeplink = "Missing deeplink";
 };
 
 class properties {
 public:
+	System::String^ getdatapath(); // convert string to system string and return it (openFileDialog1_default);
 	string adb_location;
+	string log_location;
 	string packet_name;
+	string log_name;
 	string openFileDialog1_default = "c:\\";
-	System::String^ getdatapath(); // (openFileDialog1_default);
 };
 #endif
 

@@ -1,18 +1,35 @@
 TO DO:
+<!!!>
 -add "clean after click" checkbox for Deeplink
--add home button simulation checkbox after clicking on open deeplink
+-add "home button" simulation checkbox after clicking on open deeplink (before running app)
+- add filtering by package name  adb -d logcat <your package name>:<log level> 
+</!!!>
 -save ADB Location after closing app
 -set default ADB Location to app location
 -add small console at the bottom
--add cleaning buttons for deeplink and Packet Name
 -make packet name selectable:
 	- Add / remove presets
 -prevent cmd from opening
 -add importing option for deeplinks
 -add "result" question popup 
 -add logs (date, packet_name, used deeplink, result)
+-enter on deeplink field runs app
+-Make one function to generate "cd adb..."
+
+NOTES:
+
+
+
 
 
 DONE:
++Reading where to save log
++Checking fields: log_location 
++Add functionality for blank fields in functions: log_name, log_location 
++logname default (textbox or blank) -> set it as date (DD-MM-YYYY_HH-MM-SS)
++Lose focus on button after clicking on it
++added logcat function (clean log, save log to file)
++Reading name of file to create logcat
 +add error messages 
++add cleaning buttons for deeplink and Packet Name
 +make .h that initializes every needed class 

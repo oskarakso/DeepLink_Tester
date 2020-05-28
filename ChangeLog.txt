@@ -1,3 +1,6 @@
 24.04.2020 | V 0.1 - First working version
 24.04.2020 | V 0.1.1 - Memory optimization
 25.04.2020 | V 0.2 - Added error messages and content checking for textbox fields, now using class to get error message, textbox text, added "initializer" that initialize classes at the begging of program
+26.04.2020 | V 0.2.1 - Added some comments to make code easier to understand, added "Clean form" buttons and their tooltips.
+1.05.2020 | V 0.3 - Added LogCat support!
+28.05.2020 | V 0.3.1 - Fixed buttons to lose focus after clicking. default logname (textbox default value or blank) is now: set as date_time (DD-MM-YYYY_HH-MM-SS), added custom log save location! 
