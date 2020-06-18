@@ -64,6 +64,50 @@ string connector(string a, string b, string c) { //connects all needed elements 
 	//strcpy(cmd_fix, cmd.c_str()); //convert ready string to char*
 }
 
+string logcat_get(string adb, string log_loc, string name, string filter) {
+	//adb logcat -d -v time >.\"name".txt
+	//Add to fully suypport text fields
+	//string location
+	//string name
+	// date (01_01_0001-11:11:11)
+	if (name.length() == 0 || name == (text_functions.log_name)) {
+		name = date_time_get();
+	}
+
+	if (log_loc.length() == 0 || log_loc == (text_functions.log_location)) {
+		log_loc = "";
+	}
+
+
+	adb = cleaner(adb);
+	string cd = "cd ";
+	string and = " && ";
+	string start;
+
+	if (log_loc == "") {
+		// <filter>:D *:F -d -v time
+		start = "adb logcat " + filter + ":D *:F -d -v time >.\\";
+	}
+	else {
+		start = "adb logcat " + filter + ":D *:F -d -v time >";
+		start.append(log_loc);
+		start.append("/");
+		// adb logcat -d > <path-where-you-want-to-save-file>/filename.txt
+	}
+
+	string end = ".txt";
+	string cmd;
+
+	cmd.append(cd);
+	cmd.append(adb);
+	cmd.append(and);
+	cmd.append(start);
+	cmd.append(name);
+	cmd.append(end);
+	//cout << cmd;
+	return cmd;
+}
+
 string logcat_get(string adb, string log_loc, string name) {
 	//adb logcat -d -v time >.\"name".txt
 	//Add to fully suypport text fields

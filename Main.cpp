@@ -20,6 +20,7 @@ using namespace std;
 [STAThreadAttribute]
 
 int main() {
+	FreeConsole();
 	
 	Application::EnableVisualStyles();
 	Application::SetCompatibleTextRenderingDefault(false);

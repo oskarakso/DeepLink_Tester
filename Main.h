@@ -70,6 +70,11 @@ namespace DeepLinkTeser {
 	private: System::Windows::Forms::Button^ button7;
 	private: System::Windows::Forms::Label^ focus_loser;
 	private: System::Windows::Forms::Button^ log_location_button;
+	private: System::Windows::Forms::CheckBox^ filterStatus;
+	private: System::Windows::Forms::TextBox^ filterValue;
+	private: System::Windows::Forms::Button^ button8;
+	private: System::Windows::Forms::CheckBox^ consoleStatus;
+
 	private: System::ComponentModel::IContainer^ components;
 
 	protected:
@@ -116,6 +121,10 @@ namespace DeepLinkTeser {
 			this->button7 = (gcnew System::Windows::Forms::Button());
 			this->focus_loser = (gcnew System::Windows::Forms::Label());
 			this->log_location_button = (gcnew System::Windows::Forms::Button());
+			this->filterStatus = (gcnew System::Windows::Forms::CheckBox());
+			this->filterValue = (gcnew System::Windows::Forms::TextBox());
+			this->button8 = (gcnew System::Windows::Forms::Button());
+			this->consoleStatus = (gcnew System::Windows::Forms::CheckBox());
 			this->SuspendLayout();
 			// 
 			// label1
@@ -248,7 +257,7 @@ namespace DeepLinkTeser {
 			// 
 			// log_clean
 			// 
-			this->log_clean->Location = System::Drawing::Point(594, 230);
+			this->log_clean->Location = System::Drawing::Point(598, 256);
 			this->log_clean->Name = L"log_clean";
 			this->log_clean->Size = System::Drawing::Size(105, 23);
 			this->log_clean->TabIndex = 13;
@@ -280,7 +289,7 @@ namespace DeepLinkTeser {
 			// 
 			// log_get
 			// 
-			this->log_get->Location = System::Drawing::Point(776, 230);
+			this->log_get->Location = System::Drawing::Point(776, 256);
 			this->log_get->Name = L"log_get";
 			this->log_get->Size = System::Drawing::Size(105, 23);
 			this->log_get->TabIndex = 16;
@@ -374,11 +383,59 @@ namespace DeepLinkTeser {
 			this->log_location_button->UseVisualStyleBackColor = true;
 			this->log_location_button->Click += gcnew System::EventHandler(this, &Main::log_location_button_Click);
 			// 
+			// filterStatus
+			// 
+			this->filterStatus->AutoSize = true;
+			this->filterStatus->Location = System::Drawing::Point(688, 215);
+			this->filterStatus->Name = L"filterStatus";
+			this->filterStatus->Size = System::Drawing::Size(15, 14);
+			this->filterStatus->TabIndex = 25;
+			this->filterStatus->UseVisualStyleBackColor = true;
+			this->filterStatus->CheckedChanged += gcnew System::EventHandler(this, &Main::filterStatus_CheckedChanged);
+			// 
+			// filterValue
+			// 
+			this->filterValue->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Left | System::Windows::Forms::AnchorStyles::Right));
+			this->filterValue->Enabled = false;
+			this->filterValue->Location = System::Drawing::Point(709, 209);
+			this->filterValue->Name = L"filterValue";
+			this->filterValue->Size = System::Drawing::Size(159, 20);
+			this->filterValue->TabIndex = 26;
+			this->filterValue->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
+			this->filterValue->TextChanged += gcnew System::EventHandler(this, &Main::filterValue_TextChanged);
+			// 
+			// button8
+			// 
+			this->button8->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(238)));
+			this->button8->Location = System::Drawing::Point(874, 209);
+			this->button8->Name = L"button8";
+			this->button8->Size = System::Drawing::Size(20, 20);
+			this->button8->TabIndex = 27;
+			this->button8->Text = L"X";
+			this->button8->UseVisualStyleBackColor = true;
+			this->button8->Click += gcnew System::EventHandler(this, &Main::button8_Click);
+			// 
+			// consoleStatus
+			// 
+			this->consoleStatus->AutoSize = true;
+			this->consoleStatus->Location = System::Drawing::Point(378, 116);
+			this->consoleStatus->Name = L"consoleStatus";
+			this->consoleStatus->Size = System::Drawing::Size(105, 17);
+			this->consoleStatus->TabIndex = 28;
+			this->consoleStatus->Text = L"Enable console\?";
+			this->consoleStatus->UseVisualStyleBackColor = true;
+			this->consoleStatus->CheckedChanged += gcnew System::EventHandler(this, &Main::checkBox1_CheckedChanged);
+			// 
 			// Main
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(893, 527);
+			this->Controls->Add(this->consoleStatus);
+			this->Controls->Add(this->button8);
+			this->Controls->Add(this->filterValue);
+			this->Controls->Add(this->filterStatus);
 			this->Controls->Add(this->log_location_button);
 			this->Controls->Add(this->focus_loser);
 			this->Controls->Add(this->button7);
@@ -450,12 +507,15 @@ namespace DeepLinkTeser {
 		textBox3->Text = text.get(text.deeplink);
 		log_location_textbox->Text = text.get(text.log_location);
 		log_name_textbox->Text = text.get(text.log_name);
+		filterValue->Text = text.get(text.filter);
+
 		//tooltips over buttons
 		toolTip1->SetToolTip(this->button3, text.get(text.tooltip_clean));
 		toolTip1->SetToolTip(this->button4, text.get(text.tooltip_clean));
 		toolTip1->SetToolTip(this->button5, text.get(text.tooltip_clean));
 		toolTip1->SetToolTip(this->button6, text.get(text.tooltip_clean));
 		toolTip1->SetToolTip(this->button7, text.get(text.tooltip_clean));
+		toolTip1->SetToolTip(this->button8, text.get(text.tooltip_clean));
 	}
 
 //textboxes
@@ -484,7 +544,25 @@ namespace DeepLinkTeser {
 			loglocation_textbox.status++;
 		}
 	}
+	private: System::Void filterValue_click(System::Object^ sender, System::EventArgs^ e) {
+		while (filterValue_textbox.status < 2) {
+			filterValue->Text = "";
+			filterValue_textbox.status++;
+		}
+	}
 
+	private: System::Void filterStatus_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
+		if (filterValue->Enabled == true)
+			filterValue->Enabled = false;
+		else
+			filterValue->Enabled = true;
+	}
+	private: System::Void checkBox1_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
+		if (consoleStatus->Checked == true)
+			AllocConsole();
+		else if(consoleStatus->Checked == false)
+			FreeConsole();
+	}
 //buttons "main"
 	
 	private: System::Void log_clean_Click(System::Object ^ sender, System::EventArgs ^ e) {
@@ -501,12 +579,18 @@ namespace DeepLinkTeser {
 	private: System::Void log_get_Click(System::Object ^ sender, System::EventArgs ^ e) {
 		user.adb_location = msclr::interop::marshal_as<std::string>(textBox1->Text); //set it to file location from textbox1
 		user.log_location = msclr::interop::marshal_as<std::string>(log_location_textbox->Text); //set it to folder location from log_location_textbox
+		user.filter = msclr::interop::marshal_as<std::string>(filterValue->Text); //set it to folder location from log_location_textbox
 		if (user.adb_location.length() <= 3) {
 			MessageBox::Show(error.get(error.adb));
 		}
 		else {
 			user.log_name = msclr::interop::marshal_as<std::string>(log_name_textbox->Text); //set it to file location from textbox1
-			system(logcat_get(user.adb_location, user.log_location, user.log_name).c_str());
+			if (filterStatus->Checked == true && filterValue->Text != gcnew String(text.filter.c_str()) && filterValue->Text != "") {
+				system(logcat_get(user.adb_location, user.log_location, user.log_name, user.filter).c_str());
+			}
+			else {
+				system(logcat_get(user.adb_location, user.log_location, user.log_name).c_str());
+			}
 			MessageBox::Show("Succes");
 		}
 		focus_loser->Focus();
@@ -586,8 +670,17 @@ namespace DeepLinkTeser {
 		log_location_textbox->Text = "";
 		focus_loser->Focus();
 	}
+	private: System::Void button8_Click(System::Object^ sender, System::EventArgs^ e) {
+		filterValue->Text = "";
+		focus_loser->Focus();
+	}
 	private: System::Void focus_loser_Click(System::Object^ sender, System::EventArgs^ e) {
 }
+	
+
+private: System::Void filterValue_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+}
+
 };
 }
 

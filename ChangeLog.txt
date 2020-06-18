@@ -4,3 +4,4 @@
 26.04.2020 | V 0.2.1 - Added some comments to make code easier to understand, added "Clean form" buttons and their tooltips.
 1.05.2020 | V 0.3 - Added LogCat support!
 28.05.2020 | V 0.3.1 - Fixed buttons to lose focus after clicking. default logname (textbox default value or blank) is now: set as date_time (DD-MM-YYYY_HH-MM-SS), added custom log save location! 
+19.06.2020 | V 0.4 - Cmd is now not opening at start, it can be opened/closed manually in app, Added filtering (D level, rest is at F (filer:D, *:F)) and related boxes ect.

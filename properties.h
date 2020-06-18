@@ -20,6 +20,7 @@ public:
 	string tooltip_clean = "Click to clean form";
 	string log_location = "Leave blank for default (adb folder)";
 	string log_name = "Leave blank for default (date_time)";
+	string filter = "-Filter-";
 };
 
 class error_text {
@@ -38,6 +39,7 @@ public:
 	string packet_name;
 	string log_name;
 	string openFileDialog1_default = "c:\\";
+	string filter;
 };
 #endif
 

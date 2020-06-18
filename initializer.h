@@ -8,4 +8,5 @@ clicked textbox2;
 clicked textbox3;
 clicked logname_textbox;
 clicked loglocation_textbox;
+clicked filterValue_textbox;
 
