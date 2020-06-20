@@ -1,17 +1,20 @@
 TO DO:
--add screenshot, screenshot and log options (https://blog.shvetsov.com/2013/02/grab-android-screenshot-to-computer-via.html)
--add "clean after click" checkbox for Deeplink
--add "home button" simulation checkbox after clicking on open deeplink (before running app)
 -save ADB Location after closing app
 -set default ADB Location to app location
--add small console at the bottom
+
+-add logs (date, packet_name, used deeplink, result)
+-add "clean after click" checkbox for Deeplink
+
+Proppably wont be done in next 100 years :
+-Add screenshot name and screenshot location (lol)
+-add "home button" simulation checkbox after clicking on open deeplink (before running app)
 -make packet name selectable:
 	- Add / remove presets
 -add importing option for deeplinks
 -add "result" question popup 
--add logs (date, packet_name, used deeplink, result)
 -enter on deeplink field runs app
--Make one function to generate "cd adb..."
+
+-add small console at the bottom // impossible for me or just too dumb
 
 NOTES:
 
@@ -20,6 +23,7 @@ NOTES:
 
 DONE:
 
++add screenshot, screenshot and log buttons [screenshot name is:DD-MM-YYYY_HH-MM-SS]
 +prevent cmd from opening
 +add filtering by package name  adb -d logcat <your package name>:<log level> 
 +Reading where to save log

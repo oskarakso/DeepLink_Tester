@@ -15,7 +15,6 @@ namespace DeepLinkTeser {
 	/// <summary>
 	/// Podsumowanie informacji o Main
 	/// </summary>
-	/*to do: make .h that initializes every needed class */
 
 	public ref class Main : public System::Windows::Forms::Form
 	{
@@ -74,6 +73,8 @@ namespace DeepLinkTeser {
 	private: System::Windows::Forms::TextBox^ filterValue;
 	private: System::Windows::Forms::Button^ button8;
 	private: System::Windows::Forms::CheckBox^ consoleStatus;
+	private: System::Windows::Forms::Button^ screenshotTakeButton;
+	private: System::Windows::Forms::Button^ takeScreenshotAndLogs;
 
 	private: System::ComponentModel::IContainer^ components;
 
@@ -108,8 +109,10 @@ namespace DeepLinkTeser {
 			this->button3 = (gcnew System::Windows::Forms::Button());
 			this->button4 = (gcnew System::Windows::Forms::Button());
 			this->toolTip1 = (gcnew System::Windows::Forms::ToolTip(this->components));
-			this->button5 = (gcnew System::Windows::Forms::Button());
 			this->log_clean = (gcnew System::Windows::Forms::Button());
+			this->screenshotTakeButton = (gcnew System::Windows::Forms::Button());
+			this->takeScreenshotAndLogs = (gcnew System::Windows::Forms::Button());
+			this->button5 = (gcnew System::Windows::Forms::Button());
 			this->label4 = (gcnew System::Windows::Forms::Label());
 			this->label5 = (gcnew System::Windows::Forms::Label());
 			this->log_get = (gcnew System::Windows::Forms::Button());
@@ -187,7 +190,7 @@ namespace DeepLinkTeser {
 			// 
 			this->button2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(238)));
-			this->button2->Location = System::Drawing::Point(223, 180);
+			this->button2->Location = System::Drawing::Point(123, 180);
 			this->button2->Name = L"button2";
 			this->button2->Size = System::Drawing::Size(90, 34);
 			this->button2->TabIndex = 7;
@@ -243,6 +246,40 @@ namespace DeepLinkTeser {
 			// 
 			this->toolTip1->Popup += gcnew System::Windows::Forms::PopupEventHandler(this, &Main::toolTip1_Popup);
 			// 
+			// log_clean
+			// 
+			this->log_clean->Location = System::Drawing::Point(594, 256);
+			this->log_clean->Name = L"log_clean";
+			this->log_clean->Size = System::Drawing::Size(105, 23);
+			this->log_clean->TabIndex = 13;
+			this->log_clean->Text = L"Clean Logs";
+			this->toolTip1->SetToolTip(this->log_clean, L"Clean logs on device");
+			this->log_clean->UseVisualStyleBackColor = true;
+			this->log_clean->Click += gcnew System::EventHandler(this, &Main::log_clean_Click);
+			// 
+			// screenshotTakeButton
+			// 
+			this->screenshotTakeButton->DialogResult = System::Windows::Forms::DialogResult::OK;
+			this->screenshotTakeButton->Location = System::Drawing::Point(378, 186);
+			this->screenshotTakeButton->Name = L"screenshotTakeButton";
+			this->screenshotTakeButton->Size = System::Drawing::Size(141, 23);
+			this->screenshotTakeButton->TabIndex = 29;
+			this->screenshotTakeButton->Text = L"Take Screenshot";
+			this->toolTip1->SetToolTip(this->screenshotTakeButton, L"Takes screenshot to logs folder (if exists), else: to adb location folder");
+			this->screenshotTakeButton->UseVisualStyleBackColor = true;
+			this->screenshotTakeButton->Click += gcnew System::EventHandler(this, &Main::screenshotTakeButton_Click);
+			// 
+			// takeScreenshotAndLogs
+			// 
+			this->takeScreenshotAndLogs->Location = System::Drawing::Point(763, 298);
+			this->takeScreenshotAndLogs->Name = L"takeScreenshotAndLogs";
+			this->takeScreenshotAndLogs->Size = System::Drawing::Size(105, 43);
+			this->takeScreenshotAndLogs->TabIndex = 30;
+			this->takeScreenshotAndLogs->Text = L"Get Logs && Take Screenshot";
+			this->toolTip1->SetToolTip(this->takeScreenshotAndLogs, L"Both will be taken to \"log location folder\"");
+			this->takeScreenshotAndLogs->UseVisualStyleBackColor = true;
+			this->takeScreenshotAndLogs->Click += gcnew System::EventHandler(this, &Main::takeScreenshotAndLogs_Click);
+			// 
 			// button5
 			// 
 			this->button5->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
@@ -254,16 +291,6 @@ namespace DeepLinkTeser {
 			this->button5->Text = L"X";
 			this->button5->UseVisualStyleBackColor = true;
 			this->button5->Click += gcnew System::EventHandler(this, &Main::button5_Click);
-			// 
-			// log_clean
-			// 
-			this->log_clean->Location = System::Drawing::Point(598, 256);
-			this->log_clean->Name = L"log_clean";
-			this->log_clean->Size = System::Drawing::Size(105, 23);
-			this->log_clean->TabIndex = 13;
-			this->log_clean->Text = L"Clean Logs";
-			this->log_clean->UseVisualStyleBackColor = true;
-			this->log_clean->Click += gcnew System::EventHandler(this, &Main::log_clean_Click);
 			// 
 			// label4
 			// 
@@ -289,7 +316,7 @@ namespace DeepLinkTeser {
 			// 
 			// log_get
 			// 
-			this->log_get->Location = System::Drawing::Point(776, 256);
+			this->log_get->Location = System::Drawing::Point(763, 256);
 			this->log_get->Name = L"log_get";
 			this->log_get->Size = System::Drawing::Size(105, 23);
 			this->log_get->TabIndex = 16;
@@ -324,7 +351,7 @@ namespace DeepLinkTeser {
 			this->label6->Name = L"label6";
 			this->label6->Size = System::Drawing::Size(287, 31);
 			this->label6->TabIndex = 19;
-			this->label6->Text = L"Log Name";
+			this->label6->Text = L"Log && Screenshot Name";
 			this->label6->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
 			this->label6->Click += gcnew System::EventHandler(this, &Main::label6_Click);
 			// 
@@ -419,7 +446,7 @@ namespace DeepLinkTeser {
 			// consoleStatus
 			// 
 			this->consoleStatus->AutoSize = true;
-			this->consoleStatus->Location = System::Drawing::Point(378, 116);
+			this->consoleStatus->Location = System::Drawing::Point(378, 126);
 			this->consoleStatus->Name = L"consoleStatus";
 			this->consoleStatus->Size = System::Drawing::Size(105, 17);
 			this->consoleStatus->TabIndex = 28;
@@ -432,6 +459,8 @@ namespace DeepLinkTeser {
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(893, 527);
+			this->Controls->Add(this->takeScreenshotAndLogs);
+			this->Controls->Add(this->screenshotTakeButton);
 			this->Controls->Add(this->consoleStatus);
 			this->Controls->Add(this->button8);
 			this->Controls->Add(this->filterValue);
@@ -564,7 +593,68 @@ namespace DeepLinkTeser {
 			FreeConsole();
 	}
 //buttons "main"
-	
+	private: System::Void takeScreenshotAndLogs_Click(System::Object^ sender, System::EventArgs^ e) {
+		user.adb_location = msclr::interop::marshal_as<std::string>(textBox1->Text); //set it to file location from textbox1
+		user.log_location = msclr::interop::marshal_as<std::string>(log_location_textbox->Text); //set it to folder location from log_location_textbox
+		user.filter = msclr::interop::marshal_as<std::string>(filterValue->Text); //set it to value from filterValue textbox
+		user.log_name = msclr::interop::marshal_as<std::string>(log_name_textbox->Text); //set log name to value from log_name_textbox
+		
+		if (user.adb_location.length() <= 3) {
+			MessageBox::Show(error.get(error.adb));
+		}
+		//Takes screenshot to logs folder (if exists), else: to adb location folder.
+		else {
+			if (user.log_location.length() > 2 && user.log_location != text.log_location) {
+				//take SS
+				takeScreenshot(user.adb_location, user.log_location, user.log_name);
+				//getting logs logic and exectuion 
+				if (filterStatus->Checked == true && filterValue->Text != gcnew String(text.filter.c_str()) && filterValue->Text != "") {
+					system(logcat_get(user.adb_location, user.log_location, user.log_name, user.filter).c_str());
+				}
+				else {
+					system(logcat_get(user.adb_location, user.log_location, user.log_name).c_str());
+				}
+				//summary
+				MessageBox::Show("Screenshot taken and logs captured! \n Location: " + log_location_textbox->Text);
+			}
+			else {
+				//take SS
+				takeScreenshot(user.adb_location, user.log_name);
+				//getting logs logic and exectuion 
+				if (filterStatus->Checked == true && filterValue->Text != gcnew String(text.filter.c_str()) && filterValue->Text != "") {
+					system(logcat_get(user.adb_location, user.log_location, user.log_name, user.filter).c_str());
+				}
+				else {
+					system(logcat_get(user.adb_location, user.log_location, user.log_name).c_str());
+				}
+				//summary
+				MessageBox::Show("Screenshot taken and logs captured! \n Location: Your adb folder");
+			}
+		}
+		focus_loser->Focus();
+	}
+	private: System::Void screenshotTakeButton_Click(System::Object^ sender, System::EventArgs^ e) {
+		user.adb_location = msclr::interop::marshal_as<std::string>(textBox1->Text); //set it to file location from textbox1
+		user.log_location = msclr::interop::marshal_as<std::string>(log_location_textbox->Text); //set it to folder location from log_location_textbox
+		//Takes screenshot to logs folder (if exists), else: to adb location folder.
+		if (user.adb_location.length() <= 3) {
+			MessageBox::Show(error.get(error.adb));
+		}
+		else {
+			if (user.log_location.length() > 2 && user.log_location != text.log_location) {
+				takeScreenshot(user.adb_location, "", user.log_location);
+				MessageBox::Show("Screenshot taken! \n Location: " + log_location_textbox->Text);
+			}
+			else {
+				takeScreenshot(user.adb_location, "");
+				MessageBox::Show("Screenshot taken! \n Location: Your adb folder");
+			}
+		}
+		focus_loser->Focus();
+	}
+																					 
+
+
 	private: System::Void log_clean_Click(System::Object ^ sender, System::EventArgs ^ e) {
 		user.adb_location = msclr::interop::marshal_as<std::string>(textBox1->Text); //set it to file location from textbox1
 		if (user.adb_location.length() <= 3) {
@@ -577,14 +667,14 @@ namespace DeepLinkTeser {
 		focus_loser->Focus();
 	}
 	private: System::Void log_get_Click(System::Object ^ sender, System::EventArgs ^ e) {
-		user.adb_location = msclr::interop::marshal_as<std::string>(textBox1->Text); //set it to file location from textbox1
+		user.adb_location = msclr::interop::marshal_as<std::string>(textBox1->Text); //set it to file location from textbox1 (adb)
 		user.log_location = msclr::interop::marshal_as<std::string>(log_location_textbox->Text); //set it to folder location from log_location_textbox
-		user.filter = msclr::interop::marshal_as<std::string>(filterValue->Text); //set it to folder location from log_location_textbox
+		user.filter = msclr::interop::marshal_as<std::string>(filterValue->Text); //set it to value from filterValue textbox
 		if (user.adb_location.length() <= 3) {
 			MessageBox::Show(error.get(error.adb));
 		}
 		else {
-			user.log_name = msclr::interop::marshal_as<std::string>(log_name_textbox->Text); //set it to file location from textbox1
+			user.log_name = msclr::interop::marshal_as<std::string>(log_name_textbox->Text); //set log name to value from log_name_textbox
 			if (filterStatus->Checked == true && filterValue->Text != gcnew String(text.filter.c_str()) && filterValue->Text != "") {
 				system(logcat_get(user.adb_location, user.log_location, user.log_name, user.filter).c_str());
 			}
@@ -605,7 +695,6 @@ namespace DeepLinkTeser {
 		}
 		log_location_textbox->Text = folderBrowser->SelectedPath;
 		focus_loser->Focus();
-	
 }
 	private: System::Void button1_Click(System::Object ^ sender, System::EventArgs ^ e) {
 
@@ -680,6 +769,8 @@ namespace DeepLinkTeser {
 
 private: System::Void filterValue_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 }
+
+	
 
 };
 }

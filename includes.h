@@ -11,3 +11,5 @@ std::string logcat_get(std::string adb, std::string log_loc, std::string name);
 std::string logcat_get(std::string adb, std::string log_loc, std::string name, std::string filter);
 
 std::string logcat_clean(std::string adb);
+void takeScreenshot(std::string adb, std::string location, std::string name);
+void takeScreenshot(std::string adb, std::string name);

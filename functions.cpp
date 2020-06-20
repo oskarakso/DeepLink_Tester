@@ -169,37 +169,42 @@ string logcat_clean(string adb) {
 
 }
 
-//"cd " - string a -" && " - adb shell am start -a " if = null then "android.intent.action.VIEW" else string b - " -d " "string c"
-
-/*
-string logcat_get(string adb, string log_loc, string name) {
-	//adb logcat -d -v time >.\"name".txt
-	//Add to fully suypport text fields
-	//string location
-	//string name
-	// date (01_01_0001-11:11:11)
-	if (name.length() == 0) {
-		name = date_time_get();
-	}
-	else if (name == (text_functions.log_name)) {
-		name = date_time_get();
-	}
-	
-
-adb = cleaner(adb);
-string cd = "cd ";
-string and = " && ";
-string start = "adb logcat -d -v time >.\\";
-string end = ".txt";
-string cmd;
-
-cmd.append(cd);
-cmd.append(adb);
-cmd.append(and);
-cmd.append(start);
-cmd.append(name);
-cmd.append(end);
-//cout << cmd;
-return cmd;
+void takeScreenshot(string adb, string name) {
+	takeScreenshot(adb, "", name);
 }
-*/
+
+void takeScreenshot(string adb, string location, string name) {
+	string fileName;
+	if (name.length() >= 1) {
+	fileName = name;
+	}
+	else {
+	fileName = date_time_get();
+	}
+
+	string take = "adb shell screencap -p /sdcard/" + fileName + ".png"; // takes ss on device
+	string pull = "adb pull /sdcard/" + fileName + ".png "; // pull it to pc
+	string clear = "adb shell rm /sdcard/" + fileName + ".png"; // delete it from device
+	// string location = (it's an argument lol)
+	adb = cleaner(adb);
+	
+	string cd = "cd ";
+	string and = " && ";
+	string cmd;
+
+	cmd.append(cd);
+	cmd.append(adb);
+	cmd.append(and);
+	
+	string take_cmd = (cmd + take);
+	string pull_cmd = (cmd+pull+location);
+	string clear_cmd = (cmd+clear);
+
+	system(take_cmd.c_str());
+
+	system(pull_cmd.c_str());
+
+	system(clear_cmd.c_str());
+}
+
+//"cd " - string a -" && " - adb shell am start -a " if = null then "android.intent.action.VIEW" else string b - " -d " "string c"
