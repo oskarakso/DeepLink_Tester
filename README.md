@@ -1,10 +1,10 @@
 # DeepLink_Tester
 
-![Screenshot](https://imgur.com/5ygpGeU.jpg)
+![Screenshot](https://i.imgur.com/25ih5lI.png)
 
-Small program with GUI to test deeplinks on Android devices using ADB. 
+Small program with GUI to improve testing deeplinks and reporting bugs on Android devices using ADB. 
 
-Also supports logcat (clean/save) to get logs in custom folder with custom name (or just date and time of dump).
+Supports logcat (clean/save) to get logs in custom folder with custom name (or just date and time of dump).
 
 Needs ADB on your PC to run.
 
