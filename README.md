@@ -23,9 +23,9 @@ Needs ADB on your PC to run.
 
 For more info check:
 
-[ChangeLog](blob/master/ChangeLog.txt)
+[ChangeLog](ChangeLog.txt)
 
-[todo](blob/master/todo.txt)
+[todo](todo.txt)
 
 
 
