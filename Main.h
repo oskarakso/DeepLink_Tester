@@ -22,6 +22,8 @@ namespace DeepLinkTeser {
 		Main(void)
 		{
 			InitializeComponent();
+			this->Text = "Android Testing Tools | V 0.5.1";
+			this->Refresh();
 			//
 			//TODO: W tym miejscu dodaj kod konstruktora
 			//
@@ -97,6 +99,7 @@ namespace DeepLinkTeser {
 		void InitializeComponent(void)
 		{
 			this->components = (gcnew System::ComponentModel::Container());
+			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(Main::typeid));
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
 			this->button1 = (gcnew System::Windows::Forms::Button());
@@ -489,6 +492,8 @@ namespace DeepLinkTeser {
 			this->Controls->Add(this->textBox1);
 			this->Controls->Add(this->label1);
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
+			//this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
+			this->Icon = gcnew System::Drawing::Icon(L"icon_1.ico");
 			this->MaximizeBox = false;
 			this->Name = L"Main";
 			this->Text = L"Main";

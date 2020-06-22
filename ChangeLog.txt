@@ -6,3 +6,4 @@
 28.05.2020 | V 0.3.1 - Fixed buttons to lose focus after clicking. default logname (textbox default value or blank) is now: set as date_time (DD-MM-YYYY_HH-MM-SS), added custom log save location! 
 19.06.2020 | V 0.4 - Cmd is now not opening at start, it can be opened/closed manually in app, Added filtering (D level, rest is at F (filer:D, *:F)) and related boxes ect.
 20.06.2020 | V 0.5 - Added taking screenshots(name: DD-MM-YYYY_HH-MM-SS)/screenshots with logs fucnction(both will be the same name), added few tooltips and new messageBox's.
+22.06.2020 | V  0.5.1 - Added custom window name, and icons.
