@@ -1,4 +1,4 @@
-# DeepLink_Tester 0.5.1
+# Android Testing Tools | V 0.5.1
 
 ![Screenshot](https://i.imgur.com/Y9py4De.png)
 
